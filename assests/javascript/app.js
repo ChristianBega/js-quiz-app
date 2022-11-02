@@ -2,9 +2,8 @@
 var startButton = document.getElementById("start-button");
 var quizContainer = document.getElementById("quiz-container");
 var quizPrompt = document.getElementById("quiz-prompt");
-var selectButton = document.querySelectorAll("#select-choice");
 var quizChoices = document.querySelectorAll(".quiz-choice");
-var quizQuestion = document.getElementById("#quiz-question");
+var quizQuestion = document.getElementById("quiz-question");
 
 // Creating variables to store an array of objects for each quiz question and options
 var questions = [
@@ -36,10 +35,15 @@ startButton.addEventListener("click", function () {
   quizContainer.setAttribute("data-visibility", "visible");
 });
 
+//Mapping objects
+
 // Created a for loop to iterate over each select button and listen for a click event
-selectButton.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    var selectedChoice = event.value;
-    console.log(selectedChoice);
+quizChoices.forEach((item) => {
+  item.addEventListener("click", (event, idx) => {
+    // Created variable that will collect an array list of all question values in the questions object
+    const questionsEl = questions.map((questions) => questions.question);
+    // console.log(questionsEl);
+    quizQuestion.textContent = questionsEl[0]
   });
 });
+console.log(questions);

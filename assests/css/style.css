@@ -67,7 +67,7 @@
 .quiz-choice {
   margin-block: 0.8rem;
 }
-.quiz-choice > button {
+.quiz-choice {
   padding: 0.5rem 1rem;
   min-width: 160px;
 }
