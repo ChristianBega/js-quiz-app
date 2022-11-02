@@ -31,6 +31,7 @@ a {
 }
 button {
   cursor: pointer;
+  max-width: 50%;
 }
 ol,
 ul {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assests/css/reset-style.css" />
+    <link rel="stylesheet" href="./assests/css/style.css" />
+    <title>Java Script Quiz App</title>
+  </head>
+  <body>
+    <header class="header-section">
+      <div class="header-container">
+        <a href="#"><p>View high scores</p></a>
+        <div class="counter">Time: <span class="count">10</span></div>
+      </div>
+    </header>
+    <main class="main-section">
+      <div class="quiz-prompt" id="quiz-prompt">
+        <h1>Java Script Quiz App</h1>
+        <p>
+          Try to answer the following Java Script questions before the timer runs out. Keep in mind that incorrect answers will penalize your
+          score/time by ten seconds!
+        </p>
+        <button id="start-button">Lets Start!</button>
+      </div>
+      <div class="quiz-container" id="quiz-container" data-visibility="hidden">
+        <p class="quiz-question" id="quiz-question" data-po>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sit tempore?</p>
+        <ul class="quiz-options-list">
+          <li class="quiz-choice"><button type="submit" id="select-choice">A.</button></li>
+          <li class="quiz-choice"><button type="submit" id="select-choice">B.</button></li>
+          <li class="quiz-choice"><button type="submit" id="select-choice">C.</button></li>
+          <li class="quiz-choice"><button type="submit" id="select-choice">D.</button></li>
+        </ul>
+        <div class="quiz-footer">
+          <p class="correct" data-visibility="hidden">correct</p>
+          <p class="incorrect">incorrect</p>
+        </div>
+      </div>
+    </main>
+    <script src="./assests/javascript/app.js"></script>
+  </body>
+</html>
