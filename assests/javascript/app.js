@@ -4,10 +4,9 @@ var quizContainer = document.getElementById("quiz-container");
 var quizPrompt = document.getElementById("quiz-prompt");
 
 // This is the reference for all of the quiz choices
-var quizChoices = document.querySelectorAll(".quiz-choice");
+var quizChoices = document.querySelectorAll("quiz-choices");
 // This is the reference for the quiz options list
 var quizList = document.getElementById("quiz-options-list");
-console.log(quizList);
 // This is the reference for the question element on the quiz
 var quizQuestion = document.getElementById("quiz-question");
 
@@ -35,14 +34,51 @@ var questions = [
   },
 ];
 
+// Created two undefined variables that will collect the value of randomQuestion and currentQuestionIndex
+let randomQuestions, currentQuestionIndex;
+
 // Created an event listener for the startButton to listen for clicks
 startButton.addEventListener("click", function () {
   quizPrompt.setAttribute("data-visibility", "hidden");
   quizContainer.setAttribute("data-visibility", "visible");
   // Timer starts
+
+  // Randomly select a question from array
+  randomQuestions = questions.sort(() => Math.random() - 0.5);
+  // Reassigning the value of currentQuestionIndex to 0
+  currentQuestionIndex = 0;
+  // console.log(randomQuestions, currentQuestionIndex);
+  // Calling nextQuestion
+  nextQuestion();
 });
 // Created an event listener for when a user selects another answer
-quizList.addEventListener("click", function (event) {});
+  quizList.addEventListener("click", function (event) {
+   
+  });
+
+// Creating nextQuestion function
+function nextQuestion() {
+  // Calling showQuestion function
+  //                          arguments
+  //              random choice          index
+  displayQuestion(randomQuestions[currentQuestionIndex]);
+}
+
+// Creating showQuestion function
+function displayQuestion(question) {
+  // Reassigning the innerText of questionEl to the parameter (shuffledQuestions[currentQuestionIndex])
+  //                      object   keyName
+  quizQuestion.innerText = question.question;
+  // Created four loop to iterate over each answer in the object
+  question.choices.forEach((answer) => {
+    const button = document.createElement("button");
+    button.innerText = answer;
+    button.classList.add("quiz-choices");
+    quizList.append(button);
+    // quizChoices.classList.add("btn");
+  });
+  
+}
 
 // I need an event listener for when i select and answer
 // When i select an answer I want to change to the next answer
