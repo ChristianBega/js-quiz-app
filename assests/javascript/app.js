@@ -2,7 +2,13 @@
 var startButton = document.getElementById("start-button");
 var quizContainer = document.getElementById("quiz-container");
 var quizPrompt = document.getElementById("quiz-prompt");
+
+// This is the reference for all of the quiz choices
 var quizChoices = document.querySelectorAll(".quiz-choice");
+// This is the reference for the quiz options list
+var quizList = document.getElementById("quiz-options-list");
+console.log(quizList);
+// This is the reference for the question element on the quiz
 var quizQuestion = document.getElementById("quiz-question");
 
 // Creating variables to store an array of objects for each quiz question and options
@@ -29,21 +35,19 @@ var questions = [
   },
 ];
 
-// Listening for click event on button to run function
+// Created an event listener for the startButton to listen for clicks
 startButton.addEventListener("click", function () {
   quizPrompt.setAttribute("data-visibility", "hidden");
   quizContainer.setAttribute("data-visibility", "visible");
+  // Timer starts
 });
+// Created an event listener for when a user selects another answer
+quizList.addEventListener("click", function (event) {});
 
-//Mapping objects
+// I need an event listener for when i select and answer
+// When i select an answer I want to change to the next answer
+// Creating a variable that will collect the count number of questions
 
-// Created a for loop to iterate over each select button and listen for a click event
-quizChoices.forEach((item) => {
-  item.addEventListener("click", (event, idx) => {
-    // Created variable that will collect an array list of all question values in the questions object
-    const questionsEl = questions.map((questions) => questions.question);
-    // console.log(questionsEl);
-    quizQuestion.textContent = questionsEl[0]
-  });
-});
-console.log(questions);
+// I need a timer function
+// I need a nextQuestion function
+// I need a object sorting function
