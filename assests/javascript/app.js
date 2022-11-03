@@ -32,12 +32,33 @@ var questions = [
     ],
     answer: "A for loop iterates over each object of an array.",
   },
+  {
+    question: "Question 3",
+    choices: [
+      "There is no difference.",
+      "One has an extra more = operator",
+      "== checks both data types and values, === only checks values",
+      "=== checks both data types and values, == only checks values",
+    ],
+    answer: "=== checks both data types and values, == only checks values",
+  },
+  {
+    question: "Question 4",
+    choices: [
+      "A for loop tests if a condition is true or false.",
+      "I have no clue!",
+      "A for loop takes in only one parameter",
+      "A for loop iterates over each object of an array.",
+    ],
+    answer: "A for loop iterates over each object of an array.",
+  },
 ];
 
 // Created two undefined variables that will collect the value of randomQuestion and currentQuestionIndex
 let randomQuestions, currentQuestionIndex;
 
 // Created an event listener for the startButton to listen for clicks
+// START WHEN CLICKED
 startButton.addEventListener("click", function () {
   quizPrompt.setAttribute("data-visibility", "hidden");
   quizContainer.setAttribute("data-visibility", "visible");
@@ -46,22 +67,25 @@ startButton.addEventListener("click", function () {
   // Randomly select a question from array
   randomQuestions = questions.sort(() => Math.random() - 0.5);
   // Reassigning the value of currentQuestionIndex to 0
-  currentQuestionIndex = 0;
+  currentIndex = 0;
   // console.log(randomQuestions, currentQuestionIndex);
   // Calling nextQuestion
-  nextQuestion();
+  setQuestion();
 });
 // Created an event listener for when a user selects another answer
-  quizList.addEventListener("click", function (event) {
-   
-  });
+quizList.addEventListener("click", function () {
+  // If a user clicks increment the count of the the current index (move up 1 index)
+  currentIndex++;
+  // Calling setQuestion function
+  setQuestion();
+});
 
 // Creating nextQuestion function
-function nextQuestion() {
-  // Calling showQuestion function
-  //                          arguments
+function setQuestion() {
+  // Calling displayQuestion function
+  //                            arguments
   //              random choice          index
-  displayQuestion(randomQuestions[currentQuestionIndex]);
+  displayQuestion(randomQuestions[currentIndex]);
 }
 
 // Creating showQuestion function
@@ -77,7 +101,6 @@ function displayQuestion(question) {
     quizList.append(button);
     // quizChoices.classList.add("btn");
   });
-  
 }
 
 // I need an event listener for when i select and answer
