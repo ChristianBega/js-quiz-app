@@ -1,4 +1,4 @@
-// Creating variables to store a reference to HTML elements
+// Creating variables to store a reference to the HTML elements
 var startButton = document.getElementById("start-button");
 var quizContainer = document.getElementById("quiz-container");
 var quizPrompt = document.getElementById("quiz-prompt");
@@ -91,66 +91,89 @@ var questions = [
     answer: "10 days",
   },
 ];
+
 // Created a variable that will store the maxIndex
 var maxIndex = questions.length;
 
 // Created two undefined variables that will collect the value of randomQuestion and currentQuestionIndex
 let randomQuestions, currentQuestionIndex;
 
-let test = [];
-
+// Created a variable that will store the initial count
 let count = 89;
 
+// Created two variables that will store the users correct and incorrect answers.
 var incorrectSelected = 0;
 var correctSelected = 0;
 
 // Created an event listener for the startButton to listen for clicks
 startButton.addEventListener("click", function () {
+  // setting the quizPrompt data-visibility to hidden
   quizPrompt.setAttribute("data-visibility", "hidden");
+  // setting the quizContainer data-visibility to hidden
   quizContainer.setAttribute("data-visibility", "visible");
-  // Timer starts
+  // Created a timer
+  //      setInterval - repeatedly calls a function or executes a code snippet, with a fixed time delay between each call.
+  //                     => arrow function - a compact alternative to a traditional function expression,
   timer = setInterval(() => {
+    // Updating the countEl reference with the count = 89
     countEl.innerText = count;
+    // decrement from the count by 1
     count--;
+    // if the count is less than or equal to 0 run this code
     if (count <= 0) {
+      // Call resetDisplayQuestion function
       resetDisplayQuestion();
-      clearInterval(timer);
+      // Call gameOver function
       gameOver();
+      // Call clearInterval function
+      // clearInterval() function - cancels a timed, repeating action which was previously established by a call to setInterval().
+      clearInterval(timer);
     }
+    // 1000 = 1sec
   }, 1000);
 
   // Randomly select a question from array
+  //                         .sort() - sorts the elements of an array in place and returns the reference to the same array, now sorted
+  //                                     math.floor - rounds down and returns the largest integer less than or equal to a given number.
+  //                                                 math.random - returns a floating-point, pseudo-random number that's greater than or equal to 0 and less than 1
   randomQuestions = questions.sort(() => [Math.floor(Math.random() - 0.3)]);
   // Reassigning the initial value of currentQuestionIndex to 0
   currentIndex = 0;
-
-  // console.log(randomQuestions, currentQuestionIndex);
+  //Calling createNextQuestion function
   createNextQuestion();
 });
 
 // Created an event listener for when a user selects another answer
 quizList.addEventListener("click", function () {
-  // If a user clicks increment the count of the the current index (move up 1 index)
+  // Increment the count of the the current index (move up 1 index)
   currentIndex++;
-
+  // Created an if statement to check if the currentIndex is greater than or equal to maxIndex
   if (currentIndex >= maxIndex) {
+    // if true call gameOver () function
     gameOver();
   } else {
+    // if not true call createNextQuestion
     createNextQuestion();
   }
 });
 
 // Created an event listener for when user submits results
 submitBtn.addEventListener("click", function () {
+  // Setting the quizContainer's data-visibility attr to hidden (hiding quizContainer)
   quizContainer.setAttribute("data-visibility", "hidden");
+  // Setting gameOver elements innerText to an empty string
   gameOver.innerText = "";
+  // Setting the submitBtn's data-visibility attr to hidden (hiding submitBtn)
   submitBtn.setAttribute("data-visibility", "hidden");
+  // Calling the storeScore function
   storeScore();
+  // Calling the displayHighScore function
   displayHighScore();
 });
 
 // Created an event listener for when user clicks on high scores
 highScore.addEventListener("click", function () {
+  // Calling the displayHighScore function
   displayHighScore();
 });
 
@@ -167,34 +190,57 @@ function displayQuestion(question) {
   // Reassigning the innerText of questionEl to the parameter (shuffledQuestions[currentQuestionIndex])
   //                      object   keyName
   quizQuestion.innerText = question.question;
+  // Reassigning the answerKey value to equal the current question's answer.
   answerKey = question.answer;
 
+  // Created a for loop to iterate over the choice of each question and dynamically create html elements.
+  //    initialize        condition              increment
   for (let i = 0; i < question.choices.length; i++) {
+    // Created a variable that will store the current question's choice's index.
     const choiceEl = question.choices[i];
+    // Created a variable that will store a newly created html button element
     const button = document.createElement("button");
+    // Assign the innerText of the button to equal the choiceEl variable
     button.innerText = choiceEl;
+    // Adding a class of quiz-choices to the button element
     button.classList.add("quiz-choices");
+    // Adding the button element to the quizList container
     quizList.append(button);
+    // Created a eventListener to listen for a click then to run this function
     button.addEventListener("click", function () {
+      // Creating an if statement to check if the choiceEl is equal to the answerKey
       if (choiceEl === answerKey) {
+        // If true run this code
+        // Setting the correctEl data-visibility to visible
         correctEl.setAttribute("data-visibility", "visible");
+        // Increment the correctSelected variable by one
         correctSelected += 1;
+        // Calling resetChoiceEl function
         resetChoiceEl();
       } else {
+        //If false run this code
+        // setting the incorrectEl data-visibility to visible
         incorrectEl.setAttribute("data-visibility", "visible");
+        // Decrementing 10 seconds from count if incorrect
         count -= 10;
+        // decrementing incorrectSelected variable by 1
         incorrectSelected += 1;
+        // Calling resetChoiceEl function
         resetChoiceEl();
       }
     });
   }
 }
 function resetDisplayQuestion() {
+  //Reassigning the innerHTML of quizQuestion and quizList to an empty string
   quizQuestion.innerHTML = "";
   quizList.innerHTML = "";
 }
 function resetChoiceEl() {
+  // setTimeout () - sets a timer which executes a function or specified piece of code once the timer expires.
+  //            arrow function
   setTimeout(() => {
+    //
     correctEl.setAttribute("data-visibility", "hidden");
     incorrectEl.setAttribute("data-visibility", "hidden");
   }, 1250);
@@ -247,3 +293,12 @@ function displaySubmit() {
   correctEl.innerHTML = "";
   incorrectEl.innerHTML = "";
 }
+
+// Resources ::
+// setInterval() - https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+// clearInterval() - https://developer.mozilla.org/en-US/docs/Web/API/clearInterval
+// arrow functions - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+// sort() - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+// math.floor() - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+// math.random () - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+// setTimeout () - https://developer.mozilla.org/en-US/docs/Web/API/setTimeout
