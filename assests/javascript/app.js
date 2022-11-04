@@ -97,6 +97,8 @@ var maxIndex = questions.length;
 // Created two undefined variables that will collect the value of randomQuestion and currentQuestionIndex
 let randomQuestions, currentQuestionIndex;
 
+let test = [];
+
 let count = 89;
 
 var incorrectSelected = 0;
@@ -142,12 +144,14 @@ quizList.addEventListener("click", function () {
 submitBtn.addEventListener("click", function () {
   quizContainer.setAttribute("data-visibility", "hidden");
   gameOver.innerText = "";
+  submitBtn.setAttribute("data-visibility", "hidden");
   storeScore();
+  displayHighScore();
 });
 
 // Created an event listener for when user clicks on high scores
 highScore.addEventListener("click", function () {
-  showHighScore();
+  displayHighScore();
 });
 
 // Created a function that will reset the quiz container and call the displayQuestion function.
@@ -207,8 +211,6 @@ function gameOver() {
   incorrectEl.innerHTML = "";
 }
 
-//Score function
-
 // Local storage function
 function storeScore() {
   resultsContainer.setAttribute("data-visibility", "show");
@@ -219,7 +221,7 @@ function storeScore() {
   localStorage.setItem("Score", score);
 }
 // Show high score
-function showHighScore() {
+function displayHighScore() {
   quizPrompt.setAttribute("data-visibility", "hidden");
   quizContainer.setAttribute("data-visibility", "hidden");
   const highScore = localStorage.getItem("Score");
