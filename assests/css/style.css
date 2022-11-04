@@ -85,10 +85,18 @@
   font-size: 150%;
   color: var(--gray-color);
 }
-[data-visibility="visible"] {
+[data-visibility="show"] {
   display: block;
 }
 [data-visibility="hidden"] {
   display: none;
   opacity: 0;
+}
+.game-over {
+  padding: 2rem;
+  font-size: 200%;
+  color: rgb(235, 74, 74);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
