@@ -246,7 +246,7 @@ function resetChoiceEl() {
     correctEl.setAttribute("data-visibility", "hidden");
     // Setting the correctEl data-visibility to hidden
     incorrectEl.setAttribute("data-visibility", "hidden");
-  }, 1250); //1250 = 1.25 seconds
+  }, 1500); //1500 = 1.25 seconds
 }
 // Created a function that will run after the game is over. It will reset quizQuestions, quizList, and other content.
 function gameOver() {
