@@ -162,9 +162,12 @@ submitBtn.addEventListener("click", function () {
   // Setting the quizContainer's data-visibility attr to hidden (hiding quizContainer)
   quizContainer.setAttribute("data-visibility", "hidden");
   // Setting gameOver elements innerText to an empty string
-  gameOver.innerText = "";
+  gameOver.innerHTML = "";
+
   // Setting the submitBtn's data-visibility attr to hidden (hiding submitBtn)
   submitBtn.setAttribute("data-visibility", "hidden");
+  // Setting the resultsContainer data-visibility attr to hidden (hiding resultContainer)
+  resultsContainer.innerHTML = "";
   // Calling the storeScore function
   storeScore();
   // Calling the displayHighScore function

@@ -12,7 +12,7 @@ This project is a quiz app that tests your java script knowledge. Once the quiz 
 
 ###
 
-![Quiz App](./assests/project-screenshots/project-start.png)
+![Quiz App](./assests/project-screenshots/Project-screenshot.png)
 
 N/A
 
