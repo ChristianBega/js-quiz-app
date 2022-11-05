@@ -231,65 +231,89 @@ function displayQuestion(question) {
     });
   }
 }
+// Created a function that will reset the quizQuestion and quizList innerHTML.
 function resetDisplayQuestion() {
   //Reassigning the innerHTML of quizQuestion and quizList to an empty string
   quizQuestion.innerHTML = "";
   quizList.innerHTML = "";
 }
+// Created a function that will reset correct/incorrect el after a setTimeout
 function resetChoiceEl() {
   // setTimeout () - sets a timer which executes a function or specified piece of code once the timer expires.
   //            arrow function
   setTimeout(() => {
-    //
+    // Setting the correctEl data-visibility to hidden
     correctEl.setAttribute("data-visibility", "hidden");
+    // Setting the correctEl data-visibility to hidden
     incorrectEl.setAttribute("data-visibility", "hidden");
-  }, 1250);
+  }, 1250); //1250 = 1.25 seconds
 }
+// Created a function that will run after the game is over. It will reset quizQuestions, quizList, and other content.
 function gameOver() {
+  // calling resetDisplayQuestion
   resetDisplayQuestion();
+  // Setting the data-visibility of resultsContainer to visible
   resultsContainer.setAttribute("data-visibility", "visible");
+  // Created a variable that store the newly created div element
   const gameOver = document.createElement("div");
+  // Setting that div element's innerText to game over
   gameOver.innerText = "Game Over";
+  // Adding a class to the game-over div element
   gameOver.classList.add("game-over");
+  // Appending that div to the quizContainer
   quizContainer.append(gameOver);
+  // Setting the countEl to 0
   countEl.innerText = 0;
+  //  Setting correct/incorrect element to an empty string.
   correctEl.innerHTML = "";
   incorrectEl.innerHTML = "";
 }
 
-// Local storage function
+// Created a local storage function that will store the score after a game
 function storeScore() {
+  // Set the data-visibility of resultsContainer to show
   resultsContainer.setAttribute("data-visibility", "show");
+  // Calling the resetDisplayQuestion function
   resetDisplayQuestion();
+  // Created a variable that will store the score
   score = Math.floor((incorrectSelected / maxIndex) * 100) + "%";
+  // Setting the scoreEl's innerText to the value of score
   scoreEl.innerText = score;
+  // setting items into the local store and assigning user inputs and final score
   localStorage.setItem("Initials", userInitials.value);
   localStorage.setItem("Score", score);
 }
 // Show high score
 function displayHighScore() {
+  // Set the data-visibility of quizPrompt to hidden
   quizPrompt.setAttribute("data-visibility", "hidden");
+  // Set the data-visibility of quizContainer to hidden
   quizContainer.setAttribute("data-visibility", "hidden");
+  // Created a variable that will store the value from local store
   const highScore = localStorage.getItem("Score");
   const initials = localStorage.getItem("Initials");
-
+  // Created a variable that will store the value of the newly created div
   const highScoreEl = document.createElement("div");
   const initialsEl = document.createElement("div");
-
+  // Setting the innerText of highScoreEl and initialsEl
   highScoreEl.innerText = "Current high Score: " + highScore;
   initialsEl.innerText = "The current leader is: " + initials;
-
+  // Added a class to highScoreEl and initialsEl
   highScoreEl.classList.add("results");
   initialsEl.classList.add("results");
-
+  // Adding the div element to the document body
   document.body.append(highScoreEl);
   document.body.append(initialsEl);
 }
-// Submit function
+// Created a displaySubmit function
 function displaySubmit() {
+  // Created a variable that will store the value of the newly created div
   submitEl = document.createElement("div");
+  // Setting the innerText of the div element
   submitEl.innerText = "Submitted";
+  // Adding the div element to the quizContainer
   quizContainer.append(submitEl);
+  // Setting the correctEl/incorrectEL innerHtml to an empty string
   correctEl.innerHTML = "";
   incorrectEl.innerHTML = "";
 }
